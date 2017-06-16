@@ -1,6 +1,6 @@
 require 'bigdecimal' # for handling floats
 
-def evaluate_all_the_things(array)
+def evaluate_differences(array)
   # Output the difference between each Vitality cost and its preceding cost
   puts "Differences between each Vitality cost and its preceding cost"
   array.each_with_index { |n,i| next if i==0 ; puts "#{n - array[i-1]}" }
@@ -11,6 +11,10 @@ def evaluate_all_the_things(array)
   array.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((n - array[i-1]).to_s).truncate(3).to_f}" }
 
   puts "" # empty space
+end
+
+def evaluate_all_the_things(array)
+  evaluate_differences(array)
 
   # Output the % increase between each Vitality cost and its predecessor
   puts "Percentage increase between each Vitality cost and its preceding cost"
