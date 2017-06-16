@@ -24,6 +24,7 @@ def evaluate_all_the_things(array)
   puts "" # empty space
 
   # Get sum of all Vitality costs
+  puts "Sum of all Vitality costs"
   @sum_of_values = array.inject { |s,i| s+=i }
   puts @sum_of_values
 
@@ -31,7 +32,7 @@ def evaluate_all_the_things(array)
 
   # Divide sum by first Vitality cost to get quotient
   # (what you would multiply the initial vitality increase by to get the sum, above)
-  puts "#{@sum_of_values / array[0]}"
+  puts "#{@sum_of_values / array[0]}x"
 end
 
 # Lonely Corallite
