@@ -25,14 +25,23 @@ def evaluate_differences(array)
 end
 
 def evaluate_percentage_differences(array)
-  # Output the % increase between each Vitality cost and its predecessor
   puts "Percentage increase between each Vitality cost and its preceding cost"
-  array.each_with_index { |n,i| next if i==0 ; puts "#{((n - array[i-1]) / array[i-1]) * 100}" }
 
-  puts "" # empty space
+  array.each_with_index do |n,i|
+    next if i==0  # skip over first value
 
-  # Same as above, but limited to 3 decimal places
-  array.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((((n - array[i-1]) / array[i-1]) * 100).to_s).truncate(3).to_f}" }
+    output_string = "" # set empty output_string
+
+    # The percentage increase between each Vitality cost and its preceding cost
+    output_string << "#{((n - array[i-1]) / array[i-1]) * 100} %"
+
+    output_string << "    |   " # row divider
+
+    # Percentage increase, as above, but limited to 3 decimal places
+    output_string << "#{BigDecimal.new((((n - array[i-1]) / array[i-1]) * 100).to_s).truncate(3).to_f} %"
+
+    puts output_string
+  end
 
   puts "" # empty space
 end
