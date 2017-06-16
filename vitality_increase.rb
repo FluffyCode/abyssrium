@@ -16,11 +16,11 @@ values1.each_with_index { |n,i| next if i==0 ; puts "#{n - values1[i-1]}" }
 # Same as above, but limited to 3 decimal places
 values1.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((n - values1[i-1]).to_s).truncate(3).to_f}" }
 
-# Output the % increase between each vitality value and its predecessor
+# Output the % increase between each Vitality cost and its predecessor
 values1.each_with_index { |n,i| next if i==0 ; puts "#{((n - values1[i-1]) / values1[i-1]) * 100}" }
 
 # Same as above, but limited to 3 decimal places
 values1.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((((n - values1[i-1]) / values1[i-1]) * 100).to_s).truncate(3).to_f}" }
 
-# Get sum of all values
+# Get sum of all Vitality costs
 puts "#{@sum_of_values = values1.inject { |s,i| s+=i }}"
