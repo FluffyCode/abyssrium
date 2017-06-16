@@ -9,3 +9,6 @@ values1 = [
   2.879,3.081,3.297,3.527,3.774,
   4.039,4.321,4.624,4.948,5.294
 ]
+
+# Output the difference between each Vitality cost and its preceding cost
+values1.each_with_index { |n,i| next if i==0 ; puts "#{n - values1[i-1]}" }
