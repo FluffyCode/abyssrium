@@ -10,6 +10,16 @@ values1 = [
   4.039,4.321,4.624,4.948,5.294
 ]
 
+# Lonely Corallite
+# 8950 -> 8975 | value: CJ
+values2 = [
+  17.430,18.650,19.955,21.352,22.847,
+  24.446,26.158,27.989,29.948,32.044,
+  34.288,36.688,39.256,42.004,44.944,
+  48.090,51.457,55.059,58.913,63.037,
+  67.449,72.171,77.223,82.628,88.412
+]
+
 # Output the difference between each Vitality cost and its preceding cost
 values1.each_with_index { |n,i| next if i==0 ; puts "#{n - values1[i-1]}" }
 
@@ -29,3 +39,4 @@ puts @sum_of_values
 # Divide sum by first Vitality cost to get quotient
 # (what you would multiply the initial vitality increase by to get the sum, above)
 puts "#{@sum_of_values / values1[0]}"
+
