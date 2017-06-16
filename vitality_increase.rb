@@ -23,7 +23,8 @@ values1.each_with_index { |n,i| next if i==0 ; puts "#{((n - values1[i-1]) / val
 values1.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((((n - values1[i-1]) / values1[i-1]) * 100).to_s).truncate(3).to_f}" }
 
 # Get sum of all Vitality costs
-puts "#{@sum_of_values = values1.inject { |s,i| s+=i }}"
+@sum_of_values = values1.inject { |s,i| s+=i }
+puts @sum_of_values
 
 # Divide sum by first Vitality cost to get quotient
 # (what you would multiply the initial vitality increase by to get the sum, above)
