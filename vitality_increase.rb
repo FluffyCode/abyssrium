@@ -1,14 +1,23 @@
 require 'bigdecimal' # for handling floats
 
 def evaluate_differences(array)
-  # Output the difference between each Vitality cost and its preceding cost
   puts "Differences between each Vitality cost and its preceding cost"
-  array.each_with_index { |n,i| next if i==0 ; puts "#{n - array[i-1]}" }
 
-  puts "" # empty space
+  array.each_with_index do |n,i|
+    next if i==0 # skip over first value
 
-  # Same as above, but limited to 3 decimal places
-  array.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((n - array[i-1]).to_s).truncate(3).to_f}" }
+    output_string = "" # set empty output_string
+
+    # The difference between each Vitality cost and its preceding cost
+    output_string << "#{(n - array[i-1])}"
+
+    output_string << " | " # row divider
+
+    # Difference, as above, but limited to 3 decimal places
+    output_string << "#{(BigDecimal.new((n - array[i-1]).to_s).truncate(3).to_f)}"
+
+    puts output_string
+  end
 
   puts "" # empty space
 end
