@@ -1,5 +1,6 @@
 require 'bigdecimal' # for handling floats
 
+# Lonely Corallite
 # 8500 -> 8525 | value: CF
 values1 = [
   1.043,1.116,1.195,1.278,1.368,
