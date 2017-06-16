@@ -21,3 +21,6 @@ values1.each_with_index { |n,i| next if i==0 ; puts "#{((n - values1[i-1]) / val
 
 # Same as above, but limited to 3 decimal places
 values1.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((((n - values1[i-1]) / values1[i-1]) * 100).to_s).truncate(3).to_f}" }
+
+# Get sum of all values
+puts "#{@sum_of_values = values1.inject { |s,i| s+=i }}"
