@@ -24,9 +24,7 @@ def evaluate_differences(array)
   puts "" # empty space
 end
 
-def evaluate_all_the_things(array)
-  evaluate_differences(array)
-
+def evaluate_percentage_differences(array)
   # Output the % increase between each Vitality cost and its predecessor
   puts "Percentage increase between each Vitality cost and its preceding cost"
   array.each_with_index { |n,i| next if i==0 ; puts "#{((n - array[i-1]) / array[i-1]) * 100}" }
@@ -37,6 +35,12 @@ def evaluate_all_the_things(array)
   array.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((((n - array[i-1]) / array[i-1]) * 100).to_s).truncate(3).to_f}" }
 
   puts "" # empty space
+end
+
+def evaluate_all_the_things(array)
+  evaluate_differences(array)
+
+  evaluate_percentage_differences(array)
 
   # Get sum of all Vitality costs
   puts "Sum of all Vitality costs"
