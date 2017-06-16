@@ -2,20 +2,32 @@ require 'bigdecimal' # for handling floats
 
 def evaluate_all_the_things(array)
   # Output the difference between each Vitality cost and its preceding cost
+  puts "Differences between each Vitality cost and its preceding cost"
   array.each_with_index { |n,i| next if i==0 ; puts "#{n - array[i-1]}" }
+
+  puts "" # empty space
 
   # Same as above, but limited to 3 decimal places
   array.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((n - array[i-1]).to_s).truncate(3).to_f}" }
 
+  puts "" # empty space
+
   # Output the % increase between each Vitality cost and its predecessor
+  puts "Percentage increase between each Vitality cost and its preceding cost"
   array.each_with_index { |n,i| next if i==0 ; puts "#{((n - array[i-1]) / array[i-1]) * 100}" }
+
+  puts "" # empty space
 
   # Same as above, but limited to 3 decimal places
   array.each_with_index { |n,i| next if i==0 ; puts "#{BigDecimal.new((((n - array[i-1]) / array[i-1]) * 100).to_s).truncate(3).to_f}" }
 
+  puts "" # empty space
+
   # Get sum of all Vitality costs
   @sum_of_values = array.inject { |s,i| s+=i }
   puts @sum_of_values
+
+  puts "" # empty space
 
   # Divide sum by first Vitality cost to get quotient
   # (what you would multiply the initial vitality increase by to get the sum, above)
