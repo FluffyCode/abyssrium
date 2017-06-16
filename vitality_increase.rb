@@ -25,14 +25,14 @@ def evaluate_all_the_things(array)
 
   # Get sum of all Vitality costs
   puts "Sum of all Vitality costs"
-  @sum_of_values = array.inject { |s,i| s+=i }
+  @sum_of_values = BigDecimal.new((array.inject { |s,i| s+=i }).to_s).truncate(3).to_f
   puts @sum_of_values
 
   puts "" # empty space
 
   # Divide sum by first Vitality cost to get quotient
   # (what you would multiply the initial vitality increase by to get the sum, above)
-  puts "#{@sum_of_values / array[0]}x"
+  puts "#{BigDecimal.new((@sum_of_values / array[0]).to_s).truncate(3).to_f}"
 end
 
 # Lonely Corallite
