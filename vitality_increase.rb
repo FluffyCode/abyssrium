@@ -1,6 +1,6 @@
-require 'bigdecimal'  # for handling floats
-require 'colorize'    # making output(s) easier to read
-require 'table_print' # for simplifying table creation/output readability
+require 'bigdecimal'     # for handling floats
+require 'colorize'       # making output(s) easier to read
+require 'terminal-table' # for simplifying table creation/output readability
 
 class TableRow
   attr_accessor :cost, :difference, :trunc_diff, :percent_diff
