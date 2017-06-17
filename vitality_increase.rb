@@ -28,12 +28,14 @@ def evaluate_all_the_things(array)
     percent_increase = ((n - array[i-1]) / array[i-1]) * 100 # calculate percentage change
 
     # The percentage increase between each Vitality cost and its preceding cost, limited to 3 decimal places
-    this_row << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f}".green
+    this_row << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f} %".green
 
     evaluated_rows << this_row # add this_row to evaluated_rows
   end
 
-  table = Terminal::Table.new :rows => evaluated_rows # build table from evaluated_rows
+  # build table from evaluated_rows
+  table = Terminal::Table.new headings: ["cost","difference","simplified diff","% increase"],
+    rows: evaluated_rows
   puts table # output table
 
   puts "" # empty space
