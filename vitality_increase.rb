@@ -1,6 +1,6 @@
 require 'bigdecimal' # for handling floats
 
-def evaluate_differences(array)
+def evaluate_all_the_things(array)
   puts "Differences between each Vitality cost and its preceding cost"
 
   puts "" # empty space
@@ -36,10 +36,6 @@ def evaluate_differences(array)
   end
 
   puts "" # empty space
-end
-
-def evaluate_all_the_things(array)
-  evaluate_differences(array)
 
   # Get sum of all Vitality costs
   puts "Sum of all Vitality costs"
