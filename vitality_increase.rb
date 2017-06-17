@@ -3,47 +3,31 @@ require 'bigdecimal' # for handling floats
 def evaluate_differences(array)
   puts "Differences between each Vitality cost and its preceding cost"
 
-  puts "---------------------- + ----------------------" # header row
+  puts "" # empty space
+
+  puts "             Vitality difference             |  % increase   "
+  puts "--------------------------- + -------------- + --------------" # header row
 
   array.each_with_index do |n,i|
     next if i==0 # skip over first value
 
     output_string = "" # set empty output_string
 
-    difference = n - array[i-1]
+    difference = n - array[i-1] # calculate difference
 
     # The difference between each Vitality cost and its preceding cost
-    output_string << " #{difference}".ljust(20)
+    output_string << "  #{difference}".ljust(25)
 
     output_string << "   |   " # row divider
 
     # Difference, as above, but limited to 3 decimal places
-    output_string << "#{(BigDecimal.new((difference).to_s).truncate(3).to_f)}".ljust(5)
+    output_string << "#{(BigDecimal.new((difference).to_s).truncate(3).to_f)}".ljust(10)
 
-    puts output_string
-  end
+    output_string << "   |   " # row divider
 
-  puts "" # empty space
-end
+    percent_increase = ((n - array[i-1]) / array[i-1]) * 100 # calculate percentage change
 
-def evaluate_percentage_differences(array)
-  puts "Percentage increase between each Vitality cost and its preceding cost"
-
-  puts "---------------------- + ----------------------" # header row
-
-  array.each_with_index do |n,i|
-    next if i==0  # skip over first value
-
-    output_string = "" # set empty output_string
-
-    percent_increase = ((n - array[i-1]) / array[i-1]) * 100
-
-    # The percentage increase between each Vitality cost and its preceding cost
-    output_string << "#{percent_increase} ".ljust(19)
-
-    output_string << "%   |   " # row divider
-
-    # Percentage increase, as above, but limited to 3 decimal places
+    # The percentage increase between each Vitality cost and its preceding cost, limited to 3 decimal places
     output_string << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f}".ljust(6)
 
     output_string << "%"
@@ -56,8 +40,6 @@ end
 
 def evaluate_all_the_things(array)
   evaluate_differences(array)
-
-  evaluate_percentage_differences(array)
 
   # Get sum of all Vitality costs
   puts "Sum of all Vitality costs"
