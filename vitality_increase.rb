@@ -31,6 +31,8 @@ def evaluate_all_the_things(array)
     this_row << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f} %".green
 
     evaluated_rows << this_row # add this_row to evaluated_rows
+
+    break if array[i+1] == array[-1]
   end
 
   # build table from evaluated_rows
