@@ -1,5 +1,6 @@
-require 'bigdecimal' # for handling floats
-require 'colorize'   # making output(s) easier to read
+require 'bigdecimal'  # for handling floats
+require 'colorize'    # making output(s) easier to read
+require 'table_print' # for simplifying table creation/output readability
 
 def evaluate_all_the_things(array)
   puts "Differences between each Vitality cost and its preceding cost"
