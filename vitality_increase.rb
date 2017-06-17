@@ -2,6 +2,17 @@ require 'bigdecimal'  # for handling floats
 require 'colorize'    # making output(s) easier to read
 require 'table_print' # for simplifying table creation/output readability
 
+class TableRow
+  attr_accessor :cost, :difference, :trunc_diff, :percent_diff
+
+  def initialize(cost,difference,trunc_diff,percent_diff)
+    @cost         = cost
+    @difference   = difference
+    @trunc_diff   = trunc_diff
+    @percent_diff = percent_diff
+  end
+end
+
 def evaluate_all_the_things(array)
   puts "Differences between each Vitality cost and its preceding cost"
 
