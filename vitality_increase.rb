@@ -9,26 +9,26 @@ def evaluate_all_the_things(array)
     this_row = [] # initialize new TableRow object for the current row
 
     if i==0 # for the first iteration only...
-      this_row << "#{n}"         # ...assign Vitality cost
+      this_row << "#{n}".green   # ...assign Vitality cost
       3.times { this_row << "" } # ...add 3 empty spaces (otherwise terminal-table won't add vertical row dividers)
       evaluated_rows << this_row # add this_row to evaluated_rows
       next
     end
 
-    this_row << "#{n}" # assign Vitality cost
+    this_row << "#{n}".green # assign Vitality cost
 
     difference = n - array[i-1] # calculate difference
 
     # The difference between each Vitality cost and its preceding cost
-    this_row << "#{difference}"
+    this_row << "#{difference}".green
 
     # Difference, as above, but limited to 3 decimal places
-    this_row << "#{(BigDecimal.new((difference).to_s).truncate(3).to_f)}"
+    this_row << "#{(BigDecimal.new((difference).to_s).truncate(3).to_f)}".green
 
     percent_increase = ((n - array[i-1]) / array[i-1]) * 100 # calculate percentage change
 
     # The percentage increase between each Vitality cost and its preceding cost, limited to 3 decimal places
-    this_row << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f}"
+    this_row << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f}".green
 
     evaluated_rows << this_row # add this_row to evaluated_rows
   end
