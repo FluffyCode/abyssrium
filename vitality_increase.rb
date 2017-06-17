@@ -9,15 +9,6 @@ end
 def evaluate_all_the_things(array)
   evaluated_rows = [] # initialize empty array to hold TableRow objects
 
-  # puts "Differences between each Vitality cost and its preceding cost"
-
-  # spacer = "  |  ".blue
-
-  # puts "" # empty space
-
-  # puts "            Vitality difference         " + spacer + "% increase   "
-  # puts "-------------------------- + ------------ + --------------".blue # header row
-
   array.each_with_index do |n,i|
     this_row = TableRow.new # initialize new TableRow object for the current row
 
@@ -104,5 +95,7 @@ values3 = [
 
 
 evaluate_all_the_things(values1)
+3.times { puts "" }
 evaluate_all_the_things(values2)
+3.times { puts "" }
 evaluate_all_the_things(values3)
