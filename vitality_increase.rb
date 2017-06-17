@@ -12,7 +12,7 @@ def evaluate_all_the_things(array,initial_level)
     if i==0 # for the first iteration only...
       this_row << "#{level} -> #{level += 1}".cyan  # ...add initial level increase
       this_row << "#{n}".green                      # ...assign Vitality cost
-      3.times { this_row << "" }                    # ...add 3 empty spaces
+      2.times { this_row << "" }                    # ...add 3 empty spaces
       evaluated_rows << this_row                    # add this_row to evaluated_rows
       next
     end
@@ -21,13 +21,8 @@ def evaluate_all_the_things(array,initial_level)
 
     this_row << "#{n}".green # assign Vitality cost
 
-    difference = n - array[i-1] # calculate difference
-
-    # The difference between each Vitality cost and its preceding cost
-    this_row << "#{difference}".green
-
-    # Difference, as above, but limited to 3 decimal places
-    this_row << "#{(BigDecimal.new((difference).to_s).truncate(3).to_f)}".green
+    # Calcualte difference, limited to 3 decimal places
+    this_row << "#{(BigDecimal.new((n - array[i-1]).to_s).truncate(3).to_f)}".green
 
     percent_increase = ((n - array[i-1]) / array[i-1]) * 100 # calculate percentage change
 
@@ -38,7 +33,7 @@ def evaluate_all_the_things(array,initial_level)
   end
 
   # build table from evaluated_rows
-  table = Terminal::Table.new headings: ["level".cyan,"cost".cyan,"difference".cyan,"simplified diff".cyan,"% increase".cyan],
+  table = Terminal::Table.new headings: ["level".cyan,"cost".cyan,"difference".cyan,"% increase".cyan],
     rows: evaluated_rows
   table.style = { padding_left: 2, padding_right: 2, border_x: "-".blue, border_y: "|".blue, border_i: "+".blue }
   puts table # output table
