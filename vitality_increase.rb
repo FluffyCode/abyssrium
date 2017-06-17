@@ -92,6 +92,6 @@ values3 = [
 
 # And the sum ends up being: 4676.406
 
-
-
+evaluate_all_the_things(values1)
+evaluate_all_the_things(values2)
 evaluate_all_the_things(values3)
