@@ -4,51 +4,47 @@ require 'table_print' # for simplifying table creation/output readability
 
 class TableRow
   attr_accessor :cost, :difference, :trunc_diff, :percent_diff
-
-  def initialize(cost,difference,trunc_diff,percent_diff)
-    @cost         = cost
-    @difference   = difference
-    @trunc_diff   = trunc_diff
-    @percent_diff = percent_diff
-  end
 end
 
 def evaluate_all_the_things(array)
-  puts "Differences between each Vitality cost and its preceding cost"
+  evaluated_rows = [] # initialize empty array to hold TableRow objects
 
-  spacer = "  |  ".blue
+  # puts "Differences between each Vitality cost and its preceding cost"
 
-  puts "" # empty space
+  # spacer = "  |  ".blue
 
-  puts "            Vitality difference         " + spacer + "% increase   "
-  puts "-------------------------- + ------------ + --------------".blue # header row
+  # puts "" # empty space
+
+  # puts "            Vitality difference         " + spacer + "% increase   "
+  # puts "-------------------------- + ------------ + --------------".blue # header row
 
   array.each_with_index do |n,i|
-    next if i==0 # skip over first value
+    this_row = TableRow.new # initialize new TableRow object for the current row
 
-    output_string = "" # set empty output_string
+    if i==0 # for the first iteration, assign Vitality cost only
+      this_row.cost = n
+      evaluated_rows << this_row
+    end
+
+    this_row.cost = "#{n}" # assign Vitality cost
 
     difference = n - array[i-1] # calculate difference
 
     # The difference between each Vitality cost and its preceding cost
-    output_string << "  #{difference}".ljust(25).green
-
-    output_string << spacer # row divider
+    this_row.difference = "#{difference}"
 
     # Difference, as above, but limited to 3 decimal places
-    output_string << "#{(BigDecimal.new((difference).to_s).truncate(3).to_f)}".ljust(10).green
-
-    output_string << spacer # row divider
+    this_row.trunc_diff = "#{(BigDecimal.new((difference).to_s).truncate(3).to_f)}"
 
     percent_increase = ((n - array[i-1]) / array[i-1]) * 100 # calculate percentage change
 
     # The percentage increase between each Vitality cost and its preceding cost, limited to 3 decimal places
-    output_string << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f}".ljust(6).green
+    this_row.percent_diff = "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f}"
 
-    output_string << "%".green
-
-    puts output_string
+    evaluated_rows << this_row
   end
+
+  tp evaluated_rows
 
   puts "" # empty space
 
