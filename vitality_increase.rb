@@ -40,6 +40,7 @@ def evaluate_all_the_things(array,initial_level)
   # build table from evaluated_rows
   table = Terminal::Table.new headings: ["level".cyan,"cost".cyan,"difference".cyan,"simplified diff".cyan,"% increase".cyan],
     rows: evaluated_rows
+  table.style = { padding_left: 2, padding_right: 2, border_x: "-".blue, border_y: "|".blue, border_i: "+".blue }
   puts table # output table
 
   puts "" # empty space
