@@ -22,8 +22,9 @@ def evaluate_all_the_things(array)
     this_row = TableRow.new # initialize new TableRow object for the current row
 
     if i==0 # for the first iteration, assign Vitality cost only
-      this_row.cost = n
+      this_row.cost = "#{n}"
       evaluated_rows << this_row
+      next
     end
 
     this_row.cost = "#{n}" # assign Vitality cost
