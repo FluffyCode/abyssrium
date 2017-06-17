@@ -38,7 +38,7 @@ def evaluate_all_the_things(array,initial_level)
   end
 
   # build table from evaluated_rows
-  table = Terminal::Table.new headings: ["level","cost","difference","simplified diff","% increase"],
+  table = Terminal::Table.new headings: ["level".cyan,"cost".cyan,"difference".cyan,"simplified diff".cyan,"% increase".cyan],
     rows: evaluated_rows
   puts table # output table
 
