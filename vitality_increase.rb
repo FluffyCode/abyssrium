@@ -2,18 +2,22 @@ require 'bigdecimal'     # for handling floats
 require 'colorize'       # making output(s) easier to read
 require 'terminal-table' # for simplifying table creation/output readability
 
-def evaluate_all_the_things(array)
+def evaluate_all_the_things(array,initial_level)
+  level = initial_level
   evaluated_rows = [] # initialize empty array to hold TableRow objects
 
   array.each_with_index do |n,i|
     this_row = [] # initialize new TableRow object for the current row
 
     if i==0 # for the first iteration only...
-      this_row << "#{n}".green   # ...assign Vitality cost
-      3.times { this_row << "" } # ...add 3 empty spaces (otherwise terminal-table won't add vertical row dividers)
-      evaluated_rows << this_row # add this_row to evaluated_rows
+      this_row << "#{level} -> #{level += 1}".cyan  # ...add initial level increase
+      this_row << "#{n}".green                      # ...assign Vitality cost
+      3.times { this_row << "" }                    # ...add 3 empty spaces
+      evaluated_rows << this_row                    # add this_row to evaluated_rows
       next
     end
+
+    this_row << "#{level} -> #{level += 1}".cyan # add level increase
 
     this_row << "#{n}".green # assign Vitality cost
 
@@ -36,7 +40,7 @@ def evaluate_all_the_things(array)
   end
 
   # build table from evaluated_rows
-  table = Terminal::Table.new headings: ["cost","difference","simplified diff","% increase"],
+  table = Terminal::Table.new headings: ["level","cost","difference","simplified diff","% increase"],
     rows: evaluated_rows
   puts table # output table
 
@@ -61,8 +65,7 @@ values1 = [
   1.463,1.566,1.676,1.793,1.918,
   2.053,2.196,2.350,2.515,2.691,
   2.879,3.081,3.297,3.527,3.774,
-  4.039,4.321,4.624,4.948,5.294,
-  8500
+  4.039,4.321,4.624,4.948,5.294
 ]
 
 # Lonely Corallite
@@ -72,8 +75,7 @@ values2 = [
   24.446,26.158,27.989,29.948,32.044,
   34.288,36.688,39.256,42.004,44.944,
   48.090,51.457,55.059,58.913,63.037,
-  67.449,72.171,77.223,82.628,88.412,
-  8950
+  67.449,72.171,77.223,82.628,88.412
 ]
 
 
@@ -91,16 +93,15 @@ values2 = [
 values3 = [
   186.096,199.122,213.061,227.975,243.934,
   261.009,279.280,298.829,319.747,342.130,
-  366.079,391.704,419.124,448.462,479.855,
-  8985
+  366.079,391.704,419.124,448.462,479.855
 ]
 
 # And the sum ends up being: 4676.406
 
 
 
-evaluate_all_the_things(values1)
+evaluate_all_the_things(values1,8500)
 3.times { puts "" }
-evaluate_all_the_things(values2)
+evaluate_all_the_things(values2,8950)
 3.times { puts "" }
-evaluate_all_the_things(values3)
+evaluate_all_the_things(values3,8985)
