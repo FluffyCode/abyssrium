@@ -10,13 +10,15 @@ def evaluate_differences(array)
 
     output_string = "" # set empty output_string
 
+    difference = n - array[i-1]
+
     # The difference between each Vitality cost and its preceding cost
-    output_string << " #{(n - array[i-1])}".ljust(20)
+    output_string << " #{difference}".ljust(20)
 
     output_string << "   |   " # row divider
 
     # Difference, as above, but limited to 3 decimal places
-    output_string << "#{(BigDecimal.new((n - array[i-1]).to_s).truncate(3).to_f)}".ljust(5)
+    output_string << "#{(BigDecimal.new((difference).to_s).truncate(3).to_f)}".ljust(5)
 
     puts output_string
   end
@@ -34,13 +36,15 @@ def evaluate_percentage_differences(array)
 
     output_string = "" # set empty output_string
 
+    percent_increase = ((n - array[i-1]) / array[i-1]) * 100
+
     # The percentage increase between each Vitality cost and its preceding cost
-    output_string << "#{((n - array[i-1]) / array[i-1]) * 100} ".ljust(19)
+    output_string << "#{percent_increase} ".ljust(19)
 
     output_string << "%   |   " # row divider
 
     # Percentage increase, as above, but limited to 3 decimal places
-    output_string << "#{BigDecimal.new((((n - array[i-1]) / array[i-1]) * 100).to_s).truncate(3).to_f}".ljust(6)
+    output_string << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f}".ljust(6)
 
     output_string << "%"
 
