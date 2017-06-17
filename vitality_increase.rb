@@ -72,4 +72,26 @@ values2 = [
   67.449,72.171,77.223,82.628,88.412
 ]
 
-evaluate_all_the_things(values1)
+
+
+
+
+# I'm already 10 [lonely corallite] levels in (8985) because of acquiring 10 levels from daily mission.
+# 186.096 CJ vitality to get to next level (8986).
+186.096*63.283 # => 11776.713168
+
+# So approx. 11776.713 CJ (or 11.776 CK) to get 25 levels...
+# ...but remember, we're not starting at 8975. We're already 10 levels in.
+
+# The cost of the remaining 15 levels are:
+values3 = [
+  186.096,199.122,213.061,227.975,243.934,
+  261.009,279.280,298.829,319.747,342.130,
+  366.079,391.704,419.124,448.462,479.855
+]
+
+# And the sum ends up being: 4676.406
+
+
+
+evaluate_all_the_things(values3)
