@@ -72,25 +72,13 @@ values2 = [
   67.449,72.171,77.223,82.628,88.412
 ]
 
-
-
-
-
-# I'm already 10 [Lonely Corallite] levels ahead (8985) because of acquiring 10 levels from the daily mission.
-# It'll take 186.096 CJ vitality to get to next level (8986).
-186.096*63.283 # => 11776.713168
-
-# That's approx. 11776.713 CJ (or 11.776 CK) to get 25 levels...
-# ...but remember, I'm not starting at 8975. I'm already 10 levels ahead.
-
-# The cost of the remaining 15 levels are:
+# Lonely Corallite
+# 8985 -> 9000 | value: CJ
 values3 = [
   186.096,199.122,213.061,227.975,243.934,
   261.009,279.280,298.829,319.747,342.130,
   366.079,391.704,419.124,448.462,479.855
 ]
-
-# And the sum ends up being: 4676.406
 
 
 
