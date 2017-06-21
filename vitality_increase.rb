@@ -74,10 +74,20 @@ values2 = [
 
 # Lonely Corallite
 # 8985 -> 9000 | value: CJ
+# Getting 10 free levels, then buying the remaining 15
 values3 = [
   186.096,199.122,213.061,227.975,243.934,
   261.009,279.280,298.829,319.747,342.130,
   366.079,391.704,419.124,448.462,479.855
+]
+
+# Lonely Corallite
+# 9125 -> 9140 | value: CL
+# Buying 15 levels, then getting the remaining 10 free
+values4 = [
+  2.418,2.587,2.768,2.962,3.169,
+  ___,___,___,___,___,
+  ___,___,___,___,___
 ]
 
 
@@ -87,3 +97,5 @@ evaluate_all_the_things(values1,8500)
 evaluate_all_the_things(values2,8950)
 3.times { puts "" }
 evaluate_all_the_things(values3,8985)
+3.times { puts "" }
+evaluate_all_the_things(values4,9100)
