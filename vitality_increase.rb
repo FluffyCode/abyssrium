@@ -84,10 +84,23 @@ values3 = [
 # Lonely Corallite
 # 9125 -> 9140 | value: CL
 # Buying 15 levels, then getting the remaining 10 free
-values4 = [
+values4_partial = [
   2.418,2.587,2.768,2.962,3.169,
   3.391,3.628,3.882,4.154,4.445,
   4.756,5.089,5.445,5.827,6.235
+]
+# This was rather excessive and unnecessary.
+# Any 15 levels will cost ~25.12x the initial increase cost.
+
+
+# Lonely Corallite
+# 9125 -> 9150 | value: CL
+values4_full = [
+  2.418,2.587,2.768,2.962,3.169,
+  3.391,3.628,3.882,4.154,4.445,
+  4.756,5.089,5.445,5.827,6.235,
+  6.671,7.138,7.638,8.172,8.744,
+  9.357,10.012,10.712,___,___
 ]
 
 
@@ -98,4 +111,6 @@ evaluate_all_the_things(values2,8950)
 3.times { puts "" }
 evaluate_all_the_things(values3,8985)
 3.times { puts "" }
-evaluate_all_the_things(values4,9100)
+evaluate_all_the_things(values4_partial,9125)
+3.times { puts "" }
+evaluate_all_the_things(values4_full,9125)
