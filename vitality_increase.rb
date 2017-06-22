@@ -62,6 +62,8 @@ def evaluate_all_the_things(array,initial_level)
 
   puts "Sum of first 10: " + "#{first_ten}".green + " | Sum of last 15: " + "#{last_fifteen}".green
   puts "Sum of first 15: " + "#{first_fifteen}".green + " | Sum of last 10: " + "#{last_ten}".green
+
+  puts "Difference between buying first 15 versus buying last 15: " + "#{BigDecimal.new((last_fifteen - first_fifteen).to_s).truncate(3).to_f}".green
 end
 
 # Lonely Corallite
