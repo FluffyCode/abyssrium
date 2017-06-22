@@ -54,11 +54,11 @@ def evaluate_all_the_things(array,initial_level)
   puts "" # empty space
 
   # Determine the cost of the first/last [10/15]/[15/10] levels
-  first_ten     = array[0..9].inject{ |s,i| s+=i }
-  last_fifteen  = array[10..-1].inject{ |s,i| s+=i }
+  first_ten     = BigDecimal.new((array[0..9].inject{ |s,i| s+=i }).to_s).truncate(3).to_f
+  last_fifteen  = BigDecimal.new((array[10..-1].inject{ |s,i| s+=i }).to_s).truncate(3).to_f
 
-  first_fifteen = array[0..14].inject{ |s,i| s+=i }
-  last_ten      = array[15..-1].inject{ |s,i| s+=i }
+  first_fifteen = BigDecimal.new((array[0..14].inject{ |s,i| s+=i }).to_s).truncate(3).to_f
+  last_ten      = BigDecimal.new((array[15..-1].inject{ |s,i| s+=i }).to_s).truncate(3).to_f
 
   puts "Sum of first 10: " + "#{first_ten}".green + " | Sum of last 15: " + "#{last_fifteen}".green
   puts "Sum of first 15: " + "#{first_fifteen}".green + " | Sum of last 10: " + "#{last_ten}".green
