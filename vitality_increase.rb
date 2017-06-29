@@ -7,9 +7,10 @@ def calculate_quotient(sum, initial_value)
 end
 
 def evaluate_all_the_things(array,initial_level)
-  level = initial_level
-  evaluated_rows = [] # initialize empty array to hold TableRow objects
-  running_sum = 0     # initialize running_sum for values
+  level = initial_level # initialize level to hold incrementing levels
+  initial_value = 0     # initialize initial_value to hold initial value (will be assigned later)
+  evaluated_rows = []   # initialize empty array to hold TableRow objects
+  running_sum = 0       # initialize running_sum for values
 
   array.each_with_index do |n,i|
     this_row = [] # initialize new TableRow object for the current row
@@ -17,8 +18,9 @@ def evaluate_all_the_things(array,initial_level)
     if i==0 # for the first iteration only...
       this_row << "#{level} -> #{level += 1}".cyan  # ...add initial level increase
       this_row << "#{n}".green                      # ...assign Vitality cost
+      initial_value = n                             # ...assign the initial value to initial_value
       running_sum += n                              # ...increment running sum
-      3.times { this_row << "" }                    # ...add 3 empty spaces
+      4.times { this_row << "" }                    # ...add 3 empty spaces
       evaluated_rows << this_row                    # add this_row to evaluated_rows
       next
     end
@@ -38,11 +40,13 @@ def evaluate_all_the_things(array,initial_level)
     # The percentage increase between each Vitality cost and its preceding cost, limited to 3 decimal places
     this_row << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f} %".green
 
+    this_row << calculate_quotient(running_sum, initial_value)
+
     evaluated_rows << this_row # add this_row to evaluated_rows
   end
 
   # build table from evaluated_rows
-  table = Terminal::Table.new headings: ["level".cyan,"cost".cyan,"running cost".cyan,"difference".cyan,"% increase".cyan],
+  table = Terminal::Table.new headings: ["level".cyan,"cost".cyan,"running cost".cyan,"difference".cyan,"% increase".cyan,"running quotient".cyan],
     rows: evaluated_rows
   table.style = { padding_left: 2, padding_right: 2, border_x: "-".blue, border_y: "|".blue, border_i: "+".blue }
   puts table # output table
