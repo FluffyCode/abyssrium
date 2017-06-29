@@ -6,7 +6,7 @@ def calculate_quotient(sum, initial_value)
   return "#{BigDecimal.new((sum / initial_value).to_s).truncate(3).to_f}x".green
 end
 
-def evaluate_all_the_things(array,initial_level)
+def evaluate_all_the_things(array, initial_level)
   level = initial_level # initialize level to hold incrementing levels
   initial_value = 0     # initialize initial_value to hold initial value (will be assigned later)
   evaluated_rows = []   # initialize empty array to hold TableRow objects
@@ -16,39 +16,45 @@ def evaluate_all_the_things(array,initial_level)
     this_row = [] # initialize new TableRow object for the current row
 
     if i==0 # for the first iteration only...
-      this_row << "#{level} -> #{level += 1}".cyan  # ...add initial level increase
-      this_row << "#{n}".green                      # ...assign Vitality cost
-      initial_value = n                             # ...assign the initial value to initial_value
-      running_sum += n                              # ...increment running sum
-      4.times { this_row << "" }                    # ...add 3 empty spaces
+      this_row << "#{level} -> #{level += 1}".cyan  # add initial level increase
+      this_row << "#{n}".green                      # add Vitality cost
+      initial_value = n                             # assign the initial value to initial_value
+      running_sum += n                              # increment running sum
+      4.times { this_row << "" }                    # add 3 empty spaces
       evaluated_rows << this_row                    # add this_row to evaluated_rows
       next
     end
 
-    this_row << "#{level} -> #{level += 1}".cyan # add level increase
+    # Add level increase
+    this_row << "#{level} -> #{level += 1}".cyan
 
-    this_row << "#{n}".green # assign Vitality cost
+    # Add Vitality cost
+    this_row << "#{n}".green
 
-    # add running sum, limited to 3 decimal places
+    # Add running sum, limited to 3 decimal places
     this_row << "#{(BigDecimal.new((running_sum += n).to_s).truncate(3).to_f)}".green
 
     # Calcualte difference, limited to 3 decimal places
     this_row << "#{(BigDecimal.new((n - array[i-1]).to_s).truncate(3).to_f)}".green
 
-    percent_increase = ((n - array[i-1]) / array[i-1]) * 100 # calculate percentage change
+    # Calculate percentage change
+    percent_increase = ((n - array[i-1]) / array[i-1]) * 100
 
     # The percentage increase between each Vitality cost and its preceding cost, limited to 3 decimal places
     this_row << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f} %".green
 
+    # Add running quotient, limited to 3 decimal places
     this_row << calculate_quotient(running_sum, initial_value)
 
-    evaluated_rows << this_row # add this_row to evaluated_rows
+    # Add this_row to evaluated_rows
+    evaluated_rows << this_row
   end
 
-  # build table from evaluated_rows
+  # Build table from evaluated_rows
   table = Terminal::Table.new headings: ["level".cyan,"cost".cyan,"running cost".cyan,"difference".cyan,"% increase".cyan,"running quotient".cyan],
     rows: evaluated_rows
   table.style = { padding_left: 2, padding_right: 2, border_x: "-".blue, border_y: "|".blue, border_i: "+".blue }
+
   puts table # output table
 
   puts "" # empty space
