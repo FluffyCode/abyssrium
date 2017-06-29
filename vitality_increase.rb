@@ -2,6 +2,10 @@ require 'bigdecimal'     # for handling floats
 require 'colorize'       # making output(s) easier to read
 require 'terminal-table' # for simplifying table creation/output readability
 
+def calculate_quotient(sum, initial_value)
+  return "#{BigDecimal.new((sum / initial_value).to_s).truncate(3).to_f}x".green
+end
+
 def evaluate_all_the_things(array,initial_level)
   level = initial_level
   evaluated_rows = [] # initialize empty array to hold TableRow objects
@@ -53,7 +57,7 @@ def evaluate_all_the_things(array,initial_level)
 
   # Divide sum by first Vitality cost to get quotient
   # (what you would multiply the initial vitality increase by to get the sum, above)
-  quotient = "#{BigDecimal.new((@sum_of_values / array[0]).to_s).truncate(3).to_f}x".green
+  quotient = calculate_quotient(@sum_of_values, array[0])
   puts "The sum is a #{quotient} increase of the initial amount of " + "#{array[0]}".green
 
   puts "" # empty space
