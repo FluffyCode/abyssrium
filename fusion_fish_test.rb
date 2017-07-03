@@ -26,8 +26,9 @@ def calculate_percent_increase(array,type)
     puts "Difference: " + "#{difference}".green
 
     # calculate % increase
-    increase = difference/array[0]*100
-    puts "% increase: " + "#{limit_decimal(increase)}%".green
+    increase = limit_decimal(difference/array[0]*100)
+
+    puts "% increase: " + "#{increase}%".green + " (/#{i} = " + "#{limit_decimal(increase/i)}%".green + ")"
 
     # calculate correct 30% increase
     correct_increase = limit_decimal(array[0]*(0.3*i))
