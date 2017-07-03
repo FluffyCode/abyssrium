@@ -1,4 +1,9 @@
-require 'colorize'
+require 'bigdecimal' # for handling floats
+require 'colorize'   # making output(s) easier to read
+
+def limit_decimal(input)
+  return BigDecimal.new((input).to_s).truncate(3).to_f
+end
 
 # Vitality/tap (in DL)
 x = [3.073, 3.125, 3.176, 3.227, 3.278, 3.330]
@@ -10,20 +15,25 @@ def calculate_percent_increase(array,type)
   array.each_with_index do |n,i|
     next if i==0 # skip first iteration
 
-    # calculate difference
-    difference = n-array[0]
+    puts "________________________________________"
+    puts "After buying #{i} fish with a 30% bonus"
 
     puts "Original " + type + ": " + "#{array[0]}".green
     puts "Current "   + type + ": " + "#{n}".green
 
+    # calculate difference
+    difference = limit_decimal(n-array[0])
     puts "Difference: " + "#{difference}".green
-    puts "% increase: " + "#{difference/array[0]*100}".green # calculate % increase
+
+    # calculate % increase
+    increase = difference/array[0]*100
+    puts "% increase: " + "#{limit_decimal(increase)}%".green
 
     # calculate correct 30% increase
-    correct_increase = array[0]*(0.3*i)
+    correct_increase = limit_decimal(array[0]*(0.3*i))
 
     puts "A #{30*i}% increase is actually: " + "#{correct_increase}".green
-    puts "Current " + type + " should be: " + "#{array[0]+correct_increase}".green
+    puts "Current " + type + " should be: " + "#{limit_decimal(array[0]+correct_increase)}".green
 
     puts "" #empty space
   end
@@ -31,4 +41,4 @@ end
 
 calculate_percent_increase(x,"Vitality/tap".cyan)
 3.times { puts "" } #empty space
-# calculate_percent_increase(y,"Vitality/sec (coral)".cyan)
+calculate_percent_increase(y,"Vitality/sec (coral)".cyan)
