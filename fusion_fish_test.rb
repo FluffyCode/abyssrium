@@ -1,3 +1,6 @@
+# Bad methodology is bad.
+# Keeping this for posterity, but do not take to heart.
+
 require 'bigdecimal' # for handling floats
 require 'colorize'   # making output(s) easier to read
 
