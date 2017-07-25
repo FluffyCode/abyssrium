@@ -121,7 +121,7 @@ values4_partial = [
   4.756,5.089,5.445,5.827,6.235
 ]
 # This was rather excessive and unnecessary.
-# Any 15 levels will cost ~25.12x the initial increase cost.
+# Any 15 levels will cost ~25.12x the initial increase
 
 # Lonely Corallite
 # 9125 -> 9150 | value: CL
