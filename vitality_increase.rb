@@ -2,8 +2,12 @@ require 'bigdecimal'     # for handling floats
 require 'colorize'       # making output(s) easier to read
 require 'terminal-table' # for simplifying table creation/output readability
 
+def truncate_decimal(decimal)
+  return BigDecimal.new((decimal).to_s).truncate(3).to_f
+end
+
 def calculate_quotient(sum, initial_value)
-  return "#{BigDecimal.new((sum / initial_value).to_s).truncate(3).to_f}x".green
+  return "#{truncate_decimal(sum / initial_value)}x".green
 end
 
 def evaluate_all_the_things(array, initial_level)
@@ -32,7 +36,7 @@ def evaluate_all_the_things(array, initial_level)
     this_row << "#{n}".green
 
     # Add running sum, limited to 3 decimal places
-    this_row << "#{(BigDecimal.new((running_sum += n).to_s).truncate(3).to_f)}".green
+    this_row << "#{truncate_decimal(running_sum += n)}".green
 
     # Add running quotient, limited to 3 decimal places
     this_row << calculate_quotient(running_sum, initial_value)
@@ -41,7 +45,7 @@ def evaluate_all_the_things(array, initial_level)
     percent_increase = ((n - array[i-1]) / array[i-1]) * 100
 
     # The percentage increase between each Vitality cost and its preceding cost, limited to 3 decimal places
-    this_row << "#{BigDecimal.new((percent_increase).to_s).truncate(3).to_f} %".green
+    this_row << "#{truncate_decimal(percent_increase)}".green
 
     # Add this_row to evaluated_rows
     evaluated_rows << this_row
@@ -57,7 +61,7 @@ def evaluate_all_the_things(array, initial_level)
   puts "" # empty space
 
   # Get sum of all Vitality costs
-  @sum_of_values = BigDecimal.new((array.inject { |s,i| s+=i }).to_s).truncate(3).to_f
+  @sum_of_values = truncate_decimal(array.inject { |s,i| s+=i })
   puts "Sum of all Vitality costs: " + "#{@sum_of_values}".green
 
   puts "" # empty space
@@ -70,16 +74,16 @@ def evaluate_all_the_things(array, initial_level)
   puts "" # empty space
 
   # Determine the cost of the first/last [10/15]/[15/10] levels
-  first_ten     = BigDecimal.new((array[0..9].inject{ |s,i| s+=i }).to_s).truncate(3).to_f
-  last_fifteen  = BigDecimal.new((array[10..-1].inject{ |s,i| s+=i }).to_s).truncate(3).to_f
+  first_ten     = truncate_decimal(array[0..9].inject{ |s,i| s+=i })
+  last_fifteen  = truncate_decimal(array[10..-1].inject{ |s,i| s+=i })
 
-  first_fifteen = BigDecimal.new((array[0..14].inject{ |s,i| s+=i }).to_s).truncate(3).to_f
-  last_ten      = BigDecimal.new((array[15..-1].inject{ |s,i| s+=i }).to_s).truncate(3).to_f
+  first_fifteen = truncate_decimal(array[0..14].inject{ |s,i| s+=i })
+  last_ten      = truncate_decimal(array[15..-1].inject{ |s,i| s+=i })
 
   puts "Sum of first 10: " + "#{first_ten}".green + " | Sum of last 15: " + "#{last_fifteen}".green
   puts "Sum of first 15: " + "#{first_fifteen}".green + " | Sum of last 10: " + "#{last_ten}".green
 
-  difference = BigDecimal.new((last_fifteen - first_fifteen).to_s).truncate(3).to_f
+  difference = truncate_decimal(last_fifteen - first_fifteen)
   puts "Difference between buying first 15 versus buying last 15: " + "#{difference}".green
 end
 
